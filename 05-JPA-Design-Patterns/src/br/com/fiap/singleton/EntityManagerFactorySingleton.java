@@ -11,7 +11,7 @@ public class EntityManagerFactorySingleton {
 	//2- Método estático que retorna a única instância..(criará somente uma vez)
 	public static EntityManagerFactory getInstance() {
 		if(emf == null) {
-			emf = Persistence.createEntityManagerFactory("CLIENTE_ORACLE");
+			emf = Persistence.createEntityManagerFactory("teste");
 		}
 		return emf;
 	}

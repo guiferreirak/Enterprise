@@ -8,7 +8,7 @@ import br.com.fiap.dao.GenericDAO;
 import br.com.fiap.exception.ChaveInexistenteException;
 import br.com.fiap.exception.CommitException;
 
-public class GenericDAOImpl<T, K> implements GenericDAO<T, K> {
+public abstract class GenericDAOImpl<T, K> implements GenericDAO<T, K> {
 	
 	private EntityManager em;
 	
