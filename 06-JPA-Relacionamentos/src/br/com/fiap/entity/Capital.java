@@ -1,7 +1,9 @@
 package br.com.fiap.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,9 @@ public class Capital {
 	@Column(name="cd_capital")
 	private Integer codigo;
 	
-	@OneToOne
+	//Cascade -> realiza ação configurada em cascata
+	//Fetch -> determina o momento que é carrego a relação
+	@OneToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name="cd_estado", nullable=false)
 	private Estado estado;
 	
@@ -29,6 +33,13 @@ public class Capital {
 	
 	@Column(name="nr_habitantes")
 	private Integer numeroHabitantes;
+	
+	public Capital(Estado estado, String nome, Integer numeroHabitantes) {
+		super();
+		this.estado = estado;
+		this.nome = nome;
+		this.numeroHabitantes = numeroHabitantes;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
@@ -52,6 +63,14 @@ public class Capital {
 
 	public void setNumeroHabitantes(Integer numeroHabitantes) {
 		this.numeroHabitantes = numeroHabitantes;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 	
 }

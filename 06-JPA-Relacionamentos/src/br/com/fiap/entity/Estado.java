@@ -1,7 +1,9 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,15 +28,28 @@ public class Estado {
 	@OneToOne(mappedBy="estado")
 	private Capital capital;
 	
-	@OneToMany(mappedBy="estado")
-	private List<Cidade> cidades;
+	@OneToMany(mappedBy="estado", cascade=CascadeType.PERSIST)
+	private List<Cidade> cidades = new ArrayList<Cidade>();
 	
 	@Column(name="nm_estado")
 	private String nome;
 	
 	@Column(name="ds_sigla", length=2)
 	private String sigla;
-
+	
+	public void addCidade(Cidade cidade) {
+		//adicionar a Cidade na Lista
+		cidades.add(cidade);
+		//adicionar o Estado na cidade
+		cidade.setEstado(this);
+	}
+	
+	public Estado(String nome, String sigla) {
+		super();
+		this.nome = nome;
+		this.sigla = sigla;
+	}
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
