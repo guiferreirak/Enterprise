@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,6 +24,20 @@ public class Corrida {
 	@Column(name="cd_corrida")
 	@GeneratedValue(generator="corrida", strategy=GenerationType.SEQUENCE)
 	private Integer id;
+	
+	//1. Motorista
+	@ManyToOne
+	@JoinColumn(name="cd_motorista")
+	private Motorista motorista;
+	
+	//2. Passageiro
+	@ManyToOne
+	@JoinColumn(name="cd_passageiro")
+	private Passageiro passageiro;
+	
+	//3. Pagamento
+	@OneToOne(mappedBy="corrida")
+	private Pagamento pagamento;	
 	
 	@Column(name="ds_origem", length=150)
 	private String origem;

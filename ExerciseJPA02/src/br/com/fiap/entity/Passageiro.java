@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +27,9 @@ public class Passageiro {
 	
 	@Column(name="nm_passageiro", length=100, nullable=false)
 	private String nome;
+	
+	@OneToMany(mappedBy="passageiro")
+	private Corrida corrida;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_nascimento")

@@ -1,13 +1,16 @@
 package br.com.fiap.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +22,9 @@ public class Motorista {
 	@Id
 	@Column(name="nr_carteira")
 	private Integer cnh;
+	
+	@OneToMany(mappedBy="motorista", fetch= FetchType.EAGER)
+	private List<Corrida> corrida;
 	
 	@Column(name="nm_motorista", length=150, nullable=false)
 	private String nome;

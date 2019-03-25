@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,6 +25,10 @@ public class Pagamento {
 	@Column(name="cd_pagamento")
 	@GeneratedValue(generator="pagamento", strategy=GenerationType.SEQUENCE)
 	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name="cd_corrida")
+	private Corrida corrida;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_pagamento", nullable=false)
