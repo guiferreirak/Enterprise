@@ -1,11 +1,16 @@
 package br.com.fiap.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -23,6 +28,11 @@ public class Cidade {
 	@ManyToOne
 	@JoinColumn(name="cd_estado")
 	private Estado estado;
+	
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="T_CIDADE_RIO", joinColumns = @JoinColumn(name="cd_cidade"), 
+									inverseJoinColumns = @JoinColumn(name="cd_rio"))	
+	private List<Rios> rios;
 	
 	@Column(name="nm_cidade")
 	private String nome;
@@ -60,6 +70,14 @@ public class Cidade {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public List<Rios> getRios() {
+		return rios;
+	}
+
+	public void setRios(List<Rios> rios) {
+		this.rios = rios;
 	}
 		
 }

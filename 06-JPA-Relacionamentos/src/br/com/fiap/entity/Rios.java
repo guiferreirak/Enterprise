@@ -1,10 +1,13 @@
 package br.com.fiap.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,11 +21,25 @@ public class Rios {
 	@Column(name="cd_rio")
 	private Integer codigo;
 	
+	@ManyToMany(mappedBy="rios")
+	private List<Cidade> cidade;
+	
 	@Column(name="nm_rio")
 	private String nome;
 	
 	@Column(name="nr_extensao")
 	private float extensao;
+		
+	public Rios() {
+		super();
+	}
+	
+	public Rios(String nome, float extensao) {
+		super();
+		this.nome = nome;
+		this.extensao = extensao;
+	}
+
 
 	public Integer getCodigo() {
 		return codigo;
@@ -46,6 +63,14 @@ public class Rios {
 
 	public void setExtensao(float extensao) {
 		this.extensao = extensao;
+	}
+
+	public List<Cidade> getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(List<Cidade> cidade) {
+		this.cidade = cidade;
 	}
 		
 }

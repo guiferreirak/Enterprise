@@ -2,6 +2,9 @@ package br.com.fiap.teste;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -15,6 +18,7 @@ import br.com.fiap.dao.impl.EstadoDAOImpl;
 import br.com.fiap.entity.Capital;
 import br.com.fiap.entity.Cidade;
 import br.com.fiap.entity.Estado;
+import br.com.fiap.entity.Rios;
 import br.com.fiap.exception.ChaveInexistenteException;
 import br.com.fiap.exception.CommitException;
 import br.com.fiap.singleton.EntityManagerFactorySingleton;
@@ -46,6 +50,15 @@ class EstadoTeste {
 		
 		estado.addCidade(c1);
 		estado.addCidade(c2);
+		
+		Rios rio1 = new Rios("Rio Negro", 500);
+		Rios rio2 = new Rios("Solimoes", 1500);
+		
+		List<Rios> rios = new ArrayList<Rios>();
+		rios.add(rio1);
+		rios.add(rio2);
+		
+		c1.setRios(rios);
 		
 		try {
 			estadoDao.cadastrar(estado);
