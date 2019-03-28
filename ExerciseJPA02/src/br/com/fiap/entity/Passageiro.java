@@ -1,6 +1,7 @@
 package br.com.fiap.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class Passageiro {
 	private String nome;
 	
 	@OneToMany(mappedBy="passageiro")
-	private Corrida corrida;
+	private List<Corrida> corrida;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_nascimento")

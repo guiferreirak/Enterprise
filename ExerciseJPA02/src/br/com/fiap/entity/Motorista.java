@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,6 +26,9 @@ public class Motorista {
 	
 	@OneToMany(mappedBy="motorista", fetch= FetchType.EAGER)
 	private List<Corrida> corrida;
+	
+	@ManyToMany(mappedBy="motorista")
+	private List<Veiculo> veiculo;
 	
 	@Column(name="nm_motorista", length=150, nullable=false)
 	private String nome;

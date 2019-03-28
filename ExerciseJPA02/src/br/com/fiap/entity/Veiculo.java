@@ -1,10 +1,15 @@
 package br.com.fiap.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,6 +22,11 @@ public class Veiculo {
 	@Column(name="cd_veiculo")
 	@GeneratedValue(generator="veiculo", strategy=GenerationType.SEQUENCE)
 	private Integer id;
+	
+	@ManyToMany
+	@JoinTable(name="T_VEICULO_MOTORISTA", joinColumns=@JoinColumn(name="cd_veiculo"),
+										   inverseJoinColumns=@JoinColumn(name="cd_motorista"))
+	private List<Motorista> motorista;
 	
 	@Column(name="ds_placa", nullable=false, length=9)
 	private String placa;
