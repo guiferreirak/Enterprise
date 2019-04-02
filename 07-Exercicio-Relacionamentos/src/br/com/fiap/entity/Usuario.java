@@ -26,5 +26,30 @@ public class Usuario {
 	
 	@Column(name="nm_usuario", nullable=false, length=60)
 	private String nome;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<ItemTeste> getItemTeste() {
+		return itemTeste;
+	}
+
+	public void setItemTeste(List<ItemTeste> itemTeste) {
+		this.itemTeste = itemTeste;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	
 }

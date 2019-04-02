@@ -1,7 +1,9 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,10 +23,40 @@ public class Sistema {
 	@Column(name="cd_sistema")
 	private Integer id;
 	
-	@OneToMany(mappedBy="sistema")
-	private List<CasoTeste> casoTeste;
+	@OneToMany(mappedBy="sistema", cascade=CascadeType.PERSIST)
+	private List<CasoTeste> casoTeste = new ArrayList<CasoTeste>();
 	
 	@Column(name="nm_sistema", length=60, nullable=false)
 	private String nome;
+	
+	public void addCaso(CasoTeste caso) {
+		casoTeste.add(caso);
+		caso.setSistema(this);
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<CasoTeste> getCasoTeste() {
+		return casoTeste;
+	}
+
+	public void setCasoTeste(List<CasoTeste> casoTeste) {
+		this.casoTeste = casoTeste;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	
 }

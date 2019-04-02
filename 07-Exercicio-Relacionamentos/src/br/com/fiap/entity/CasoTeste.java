@@ -1,7 +1,9 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,13 +29,59 @@ public class CasoTeste {
 	@JoinColumn(name="cd_sistema")
 	private Sistema sistema;
 	
-	@OneToMany(mappedBy="casoTeste")
-	private List<ItemTeste> itemTeste;
+	@OneToMany(mappedBy="casoTeste", cascade=CascadeType.PERSIST)
+	private List<ItemTeste> itemTeste = new ArrayList<ItemTeste>();
 	
 	@Column(name="nm_caso_teste", nullable=false, length=100)
 	private String nome;
 	
 	@Column(name="ds_caso_teste", nullable=false)
 	private String descricao;
+	
+	public void addItem(ItemTeste item) {
+		itemTeste.add(item);
+		item.setCasoTeste(this);
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Sistema getSistema() {
+		return sistema;
+	}
+
+	public void setSistema(Sistema sistema) {
+		this.sistema = sistema;
+	}
+
+	public List<ItemTeste> getItemTeste() {
+		return itemTeste;
+	}
+
+	public void setItemTeste(List<ItemTeste> itemTeste) {
+		this.itemTeste = itemTeste;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
 	
 }
