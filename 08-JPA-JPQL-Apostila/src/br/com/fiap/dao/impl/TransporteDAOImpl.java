@@ -23,4 +23,16 @@ public class TransporteDAOImpl extends GenericDAOImpl<Transporte,Integer> implem
 		return query.getResultList();
 	}
 
+	@Override
+	public List<Transporte> buscarPorEmpresa(String nomeEmpresa) {
+		//Criar a typed query
+		TypedQuery<Transporte> query = em.createQuery("from Transporte t where t.empresa = :nomeEmpresa", Transporte.class);
+		
+		//Setar o parâmetro na query
+		query.setParameter("nomeEmpresa", nomeEmpresa);
+				
+		//Executar
+		return query.getResultList();
+	}
+	
 }

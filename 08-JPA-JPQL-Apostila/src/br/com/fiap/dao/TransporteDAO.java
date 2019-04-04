@@ -8,4 +8,5 @@ public interface TransporteDAO extends GenericDAO<Transporte,Integer>{
 	
 	List<Transporte> listarTransportes();
 	
+	List<Transporte> buscarPorEmpresa(String nome);
 }

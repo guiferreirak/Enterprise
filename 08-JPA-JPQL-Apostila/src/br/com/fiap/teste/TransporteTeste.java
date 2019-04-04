@@ -25,6 +25,18 @@ class TransporteTeste {
 	}
 	
 	@Test
+	void buscarPorEmpresa() {
+		List<Transporte> lista = dao.buscarPorEmpresa("GOL");
+		
+		assertEquals(1, lista.size());
+		
+		//validar se o conteudo da lista é o que esperamos
+		for (Transporte transporte : lista) {
+			assertEquals("GOL", transporte.getEmpresa());
+		}
+	}
+	
+	@Test
 	void test() {
 		List<Transporte> lista = dao.listarTransportes();
 		
