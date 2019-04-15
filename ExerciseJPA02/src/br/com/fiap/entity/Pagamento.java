@@ -52,6 +52,14 @@ public class Pagamento {
 		this.formaPagamento = formaPagamento;
 	}
 
+	public Pagamento(Corrida corrida, Calendar data, float valor, FormaPagamento formaPagamento) {
+		super();
+		this.corrida = corrida;
+		this.data = data;
+		this.valor = valor;
+		this.formaPagamento = formaPagamento;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -83,5 +91,13 @@ public class Pagamento {
 	public void setFormaPagamento(FormaPagamento formaPagamento) {
 		this.formaPagamento = formaPagamento;
 	}
-		
+	
+	public Corrida getCorrida() {
+		return corrida;
+	}
+
+	public void setCorrida(Corrida corrida) {
+		this.corrida = corrida;
+	}
+	
 }

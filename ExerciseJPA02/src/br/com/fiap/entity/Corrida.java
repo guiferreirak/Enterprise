@@ -2,6 +2,7 @@ package br.com.fiap.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Corrida {
 	private Passageiro passageiro;
 	
 	//3. Pagamento
-	@OneToOne(mappedBy="corrida")
+	@OneToOne(mappedBy="corrida", cascade=CascadeType.PERSIST)
 	private Pagamento pagamento;	
 	
 	@Column(name="ds_origem", length=150)
@@ -63,7 +64,7 @@ public class Corrida {
 		this.data = data;
 		this.valor = valor;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -102,6 +103,30 @@ public class Corrida {
 
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+
+	public Passageiro getPassageiro() {
+		return passageiro;
+	}
+
+	public void setPassageiro(Passageiro passageiro) {
+		this.passageiro = passageiro;
+	}
+
+	public Motorista getMotorista() {
+		return motorista;
+	}
+
+	public void setMotorista(Motorista motorista) {
+		this.motorista = motorista;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 		
 }

@@ -1,13 +1,14 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -24,8 +25,8 @@ public class Motorista {
 	@Column(name="nr_carteira")
 	private Integer cnh;
 	
-	@OneToMany(mappedBy="motorista", fetch= FetchType.EAGER)
-	private List<Corrida> corrida;
+	@OneToMany(mappedBy="motorista", cascade=CascadeType.ALL)
+	private List<Corrida> corrida = new ArrayList<Corrida>();
 	
 	@ManyToMany(mappedBy="motorista")
 	private List<Veiculo> veiculo;
@@ -57,7 +58,23 @@ public class Motorista {
 		this.foto = foto;
 		this.genero = genero;
 	}
+	
+	public Motorista(List<Corrida> corrida, Integer cnh, String nome, Calendar dataNascimento, byte[] foto,
+			Genero genero) {
+		super();
+		this.corrida = corrida;
+		this.cnh = cnh;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.foto = foto;
+		this.genero = genero;
+	}
 
+	public void addCorrida(Corrida c) {
+		corrida.add(c);
+		c.setMotorista(this);
+	}
+	
 	public Integer getCnh() {
 		return cnh;
 	}
@@ -96,6 +113,22 @@ public class Motorista {
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+	
+	public List<Corrida> getCorrida() {
+		return corrida;
+	}
+
+	public void setCorrida(List<Corrida> corrida) {
+		this.corrida = corrida;
+	}
+
+	public List<Veiculo> getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(List<Veiculo> veiculo) {
+		this.veiculo = veiculo;
 	}
 	
 	

@@ -47,6 +47,14 @@ public class Veiculo {
 		this.cor = cor;
 		this.ano = ano;
 	}
+	
+	public Veiculo(List<Motorista> motorista, String placa, String cor, Integer ano) {
+		super();
+		this.motorista = motorista;
+		this.placa = placa;
+		this.cor = cor;
+		this.ano = ano;
+	}
 
 	public Integer getId() {
 		return id;

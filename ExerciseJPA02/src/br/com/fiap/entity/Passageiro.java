@@ -1,8 +1,10 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,8 +31,8 @@ public class Passageiro {
 	@Column(name="nm_passageiro", length=100, nullable=false)
 	private String nome;
 	
-	@OneToMany(mappedBy="passageiro")
-	private List<Corrida> corrida;
+	@OneToMany(mappedBy="passageiro", cascade=CascadeType.PERSIST)
+	private List<Corrida> corrida = new ArrayList<Corrida>();
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_nascimento")
@@ -49,6 +51,19 @@ public class Passageiro {
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.genero = genero;
+	}
+	
+	public Passageiro(String nome, List<Corrida> corrida, Calendar dataNascimento, Genero genero) {
+		super();
+		this.nome = nome;
+		this.corrida = corrida;
+		this.dataNascimento = dataNascimento;
+		this.genero = genero;
+	}
+	
+	public void addCorrida(Corrida c) {
+		corrida.add(c);
+		c.setPassageiro(this);
 	}
 
 	public Integer getId() {
@@ -81,6 +96,14 @@ public class Passageiro {
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+	
+	public List<Corrida> getCorrida() {
+		return corrida;
+	}
+
+	public void setCorrida(List<Corrida> corrida) {
+		this.corrida = corrida;
 	}
 		
 }
