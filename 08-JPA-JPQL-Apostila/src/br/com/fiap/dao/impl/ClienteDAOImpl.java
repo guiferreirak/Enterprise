@@ -18,6 +18,7 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 	public List<Cliente> listarClientes() {
 		//Criar a typed query
 		TypedQuery<Cliente> clientes = em.createQuery("from Cliente", Cliente.class);
+		clientes.setMaxResults(10); //Maximo de 10 resultados
 		
 		//Executar
 		return clientes.getResultList();
@@ -25,16 +26,16 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 
 	@Override
 	public List<Cliente> buscarClienteNome(String nome) {
-		TypedQuery<Cliente> clientes = em.createQuery("from Cliente c where c.nome = :nome", Cliente.class);
+		TypedQuery<Cliente> clientes = em.createQuery("from Cliente c where c.nome like :nome", Cliente.class);
 		
-		clientes.setParameter("nome", nome);
+		clientes.setParameter("nome", "%" + nome + "%");
 		
 		return clientes.getResultList();
 	}
 
 	@Override
 	public List<Cliente> buscarClienteEstado(String uf) {
-		TypedQuery<Cliente> clientes = em.createQuery("from Cliente c.endereco.cidade.uf = :uf", Cliente.class);
+		TypedQuery<Cliente> clientes = em.createQuery("from Cliente c where c.endereco.cidade.uf = :uf", Cliente.class);
 		
 		clientes.setParameter("uf", uf);
 		

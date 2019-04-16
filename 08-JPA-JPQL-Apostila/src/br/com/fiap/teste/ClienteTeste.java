@@ -24,6 +24,30 @@ class ClienteTeste {
 	}
 	
 	@Test
+	void listarClientes() {
+		List<Cliente> clientes = dao.listarClientes();
+		
+		assertNotEquals(0, clientes.size());
+	}
+	
+	@Test
+	void buscarClienteNome() {
+		List<Cliente> clientes = dao.buscarClienteNome("Le");
+		
+		for (Cliente cliente : clientes) {
+			assertTrue(cliente.getNome().contains("Le"));
+		}
+	}
+	
+	@Test
+	void buscarClienteEstado() {
+		List<Cliente> cliente = dao.buscarClienteEstado("SP");
+		for (Cliente c : cliente) {
+			assertEquals("SP", c.getEndereco().getCidade().getUf());
+		}
+	}
+	
+	@Test
 	void buscarClienteReserva() {
 		List<Cliente> clientes = dao.buscarClienteReserva(10);
 		
@@ -33,4 +57,5 @@ class ClienteTeste {
 			System.out.println("Cliente: " + cliente.getNome());
 		}
 	}
+	
 }
