@@ -27,7 +27,7 @@ public class Corrida {
 	private Integer id;
 	
 	//1. Motorista
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="cd_motorista")
 	private Motorista motorista;
 	
