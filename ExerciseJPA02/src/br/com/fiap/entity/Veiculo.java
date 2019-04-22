@@ -50,7 +50,7 @@ public class Veiculo {
 	
 	public Veiculo(List<Motorista> motorista, String placa, String cor, Integer ano) {
 		super();
-		this.motorista = motorista;
+		this.setMotorista(motorista);
 		this.placa = placa;
 		this.cor = cor;
 		this.ano = ano;
@@ -86,6 +86,14 @@ public class Veiculo {
 
 	public void setAno(Integer ano) {
 		this.ano = ano;
+	}
+
+	public List<Motorista> getMotorista() {
+		return motorista;
+	}
+
+	public void setMotorista(List<Motorista> motorista) {
+		this.motorista = motorista;
 	}
 	
 	

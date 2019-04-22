@@ -41,7 +41,7 @@ class TesteCascata {
 								new GregorianCalendar(2019, Calendar.OCTOBER, 23), 25.50f);
 				
 		//Pagamento
-		Pagamento pgto1 = new Pagamento(new GregorianCalendar(2019, Calendar.OCTOBER, 23), 25.50f, FormaPagamento.DINHEIRO);
+		Pagamento pgto1 = new Pagamento(c1, new GregorianCalendar(2019, Calendar.OCTOBER, 23), 25.50f, FormaPagamento.DINHEIRO);
 		
 		//Veiculo
 		Veiculo v1 = new Veiculo("FDR7295", "Amarelo", 1998);
@@ -55,7 +55,11 @@ class TesteCascata {
 		List<Veiculo> veiculos = new ArrayList<Veiculo>();
 		veiculos.add(v1);
 		
+		List<Motorista> motoristas = new ArrayList<Motorista>();
+		motoristas.add(m1);
+		
 		m1.setVeiculo(veiculos);
+		v1.setMotorista(motoristas);
 						
 		try {
 			dao.cadastrar(p);
