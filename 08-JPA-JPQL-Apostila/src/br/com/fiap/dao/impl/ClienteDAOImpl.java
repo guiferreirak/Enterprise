@@ -23,10 +23,11 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		//Executar
 		return clientes.getResultList();
 	}
-
+	
+	//Comparando os nomes e deixando tudo minúsculo
 	@Override
 	public List<Cliente> buscarClienteNome(String nome) {
-		TypedQuery<Cliente> clientes = em.createQuery("from Cliente c where c.nome like :nome", Cliente.class);
+		TypedQuery<Cliente> clientes = em.createQuery("from Cliente c where lower(c.nome) like lower(:nome) order by c.nome", Cliente.class);
 		
 		clientes.setParameter("nome", "%" + nome + "%");
 		
@@ -50,6 +51,29 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		clientes.setParameter("numeroDias", numeroDias);
 		
 		return clientes.getResultList();
+	}
+	
+	//NamedQuery
+	@Override
+	public List<Cliente> buscar(String nome, String cidade) {
+		return em.createNamedQuery("Cliente.porNome", Cliente.class)
+				.setParameter("n", "%" + nome + "%")
+				.setParameter("c", "%" + cidade + "%")
+				.getResultList();
+	}
+
+	@Override
+	public List<Cliente> buscarPorEstados(List<String> estados) {		
+		return em.createNamedQuery("Cliente.porEstados", Cliente.class)
+				.setParameter("e", estados)
+				.getResultList();
+	}
+
+	@Override
+	public long countPorEstados(String estado) {
+		return em.createNamedQuery("Cliente.countPorEstados", Long.class)
+				.setParameter("e", estado)
+				.getSingleResult();
 	}
 
 }

@@ -10,10 +10,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQueries({
+@NamedQuery(name="Cliente.porNome", query="select c from Cliente c "
+									+ "where c.nome like :n and c.endereco.cidade.nome like :c"), 
+
+@NamedQuery(name="Cliente.porEstados", query="select c from Cliente c where c.endereco.cidade.uf in :e"),
+
+@NamedQuery(name="Cliente.countPorEstados", query="select count(c) from Cliente c where c.endereco.cidade.uf = :e"),
+})
 
 @Entity
 @SequenceGenerator(name="seqCliente", sequenceName="SEQ_CLIENTE", allocationSize=1)

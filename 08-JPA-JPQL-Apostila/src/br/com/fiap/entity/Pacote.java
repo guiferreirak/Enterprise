@@ -9,9 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQuery(name="Pacote.sumPrecoPorTransporte", query="select sum(p.preco) from Pacote p "
+												+ "	where p.transporte.empresa like :t")
 
 @Entity
 @SequenceGenerator(name="seqPacote", sequenceName="SEQ_PACOTE", allocationSize=1)
