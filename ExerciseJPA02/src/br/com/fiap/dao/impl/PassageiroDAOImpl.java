@@ -11,5 +11,13 @@ public class PassageiroDAOImpl extends GenericDAOImpl<Passageiro, Integer> imple
 		super(em);
 		// TODO Auto-generated constructor stub
 	}
+	
+	//Entidade Pagamento
+	@Override
+	public Double somaPagamentoPorPassageiro(int id) {
+		em.createQuery("select p.corrida.passageiro.nome , sum(p.valor) "
+						+ "from Pagamento p where p.corrida.passageiro.id");
+		return null;
+	}
 
 }

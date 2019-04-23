@@ -18,7 +18,7 @@ public class MotoristaDAOImpl extends GenericDAOImpl<Motorista,Integer> implemen
 	public List<Motorista> buscarPornome(String nome) {
 		TypedQuery<Motorista> m = em.createQuery("from Motorista m where m.nome like :nome", Motorista.class);
 		
-		m.setParameter(nome, "%" + nome + "%");
+		m.setParameter("nome", "%" + nome + "%");
 		m.setMaxResults(50);
 		
 		return m.getResultList();
