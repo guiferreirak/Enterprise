@@ -1,4 +1,4 @@
-package br.com.fiap.entity;
+package br.com.fiap.exercicio.entity;
 
 import java.io.Serializable;
 import java.util.Calendar;

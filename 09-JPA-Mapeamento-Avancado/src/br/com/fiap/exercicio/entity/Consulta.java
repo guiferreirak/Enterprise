@@ -1,4 +1,4 @@
-package br.com.fiap.entity;
+package br.com.fiap.exercicio.entity;
 
 import java.util.Calendar;
 
@@ -22,7 +22,7 @@ public class Consulta {
 	private Medico medico;
 	
 	@Id
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar data;
 	
 	private String observacoes;

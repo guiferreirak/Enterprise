@@ -11,9 +11,9 @@ import br.com.fiap.dao.ConsultaDAO;
 import br.com.fiap.dao.MedicoDAO;
 import br.com.fiap.dao.impl.ConsultaDAOImpl;
 import br.com.fiap.dao.impl.MedicoDAOImpl;
-import br.com.fiap.entity.Consulta;
-import br.com.fiap.entity.Medico;
-import br.com.fiap.entity.Paciente;
+import br.com.fiap.exercicio.entity.Consulta;
+import br.com.fiap.exercicio.entity.Medico;
+import br.com.fiap.exercicio.entity.Paciente;
 import br.com.fiap.singleton.EntityManagerFactorySingleton;
 
 class TesteMedico {
@@ -27,7 +27,7 @@ class TesteMedico {
 	
 	@Test
 	void cadastrarTudo() {
-		Medico m = new Medico(449366, "Guilherme", "Ortopedista");
+		Medico m = new Medico(449366, "Guilherme", "Ortopedista", 17000, 456);
 		Paciente p = new Paciente("Bruno");
 		Consulta c = new Consulta(p, m, Calendar.getInstance(), "Braço esquerdo fraturado");
 		
@@ -35,8 +35,8 @@ class TesteMedico {
 			dao.cadastrar(c);
 			dao.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 			fail("Falha ao cadastrar em cascata");
+			e.printStackTrace();
 		}
 	}
 

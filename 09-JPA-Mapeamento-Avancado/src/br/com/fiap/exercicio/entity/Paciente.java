@@ -1,4 +1,4 @@
-package br.com.fiap.entity;
+package br.com.fiap.exercicio.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

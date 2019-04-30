@@ -3,7 +3,7 @@ package br.com.fiap.dao.impl;
 import javax.persistence.EntityManager;
 
 import br.com.fiap.dao.MedicoDAO;
-import br.com.fiap.entity.Medico;
+import br.com.fiap.exercicio.entity.Medico;
 
 public class MedicoDAOImpl extends GenericDAOImpl<Medico, Integer> implements MedicoDAO{
 
