@@ -1,17 +1,29 @@
-package br.com.fiap.heranca.entity;
+package br.com.fiap.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-public class PessoaFisica extends Pessoa{
-	
-	private String cpf;
+@Entity
+public class PessoaFisica extends Pessoa {
 
+	private String cpf;
+	
 	@Temporal(TemporalType.DATE)
 	private Calendar dataNascimento;
-	
+
+	public PessoaFisica() {
+		super();
+	}
+
+	public PessoaFisica(String nome, String cpf, Calendar dataNascimento) {
+		super(nome);
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -27,4 +39,5 @@ public class PessoaFisica extends Pessoa{
 	public void setDataNascimento(Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	
 }
